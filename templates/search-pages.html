@@ -1,0 +1,51 @@
+{% extends 'base.html' %} 
+
+{% block title %} {{ search_term }} {% endblock %} 
+
+{% block content %} 
+
+<form class = 'form-group' action = '/search-pages' method = 'POST'>
+
+    {{ form.hidden_tag() }}
+
+    {% for field in form if field.widget.input_type != 'hidden' %}
+
+    <p class = 'text-center'> 
+        {% for error in field.errors %} 
+            {{ error }}
+        {% endfor %}
+    </p>
+
+    <div class = 'container'>
+        <div class = 'mt-5 row justify-content-center'>
+            <div class = 'col-6'>
+                <div class = 'mb-5 ps-5 input-group'>
+                    {{ field( class = 'form-control fs-4 text-center text-info border-2 border-info rounded', placeholder = 'Something cool loading...' ) }}
+                    <button class = 'btn btn-outline-dark text-info btn-lg' type = 'submit'> Search </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% endfor %}
+</form>
+
+<div class = 'container'>
+    <div class = 'row'>
+        <div id = 'search-page' class = 'text-center'>
+            {% for page in pages %} 
+               <form class = 'form-control border border-info'>
+                    <div class = 'form-group'>
+                        <p class = 'mt-4 h3'> <a class = 'text-decoration-none text-info' href = '/get-page?title={{ page.title }}'> <img src = "{{ page.thumbnail['url']}}"> {{ page.title }} </a></p>
+                        <p class = 'h3'> {{ page.description }} </p>
+                    </div>
+               </form>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock %}

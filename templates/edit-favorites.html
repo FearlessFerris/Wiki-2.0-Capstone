@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}  Favorites {% endblock %} 
+
+
+{% block content %} 
+
+<form class = 'text-center' action = '/remove-favorited-item' method = 'POST'>
+    <div class = 'container'>
+        <div class = 'row'>
+            <div class = 'mt-5 col-12'>
+                {% for i in favorites %}
+                    <p class = 'fs-5 text-center'> <b> <a class = 'text-decoration-none text-center text-info' href = '/get-page?title={{ i.favorited_page }}'> {{ i.favorited_page }} </a> </b> <button formaction = '/remove-favorited-item?favorited_page={{ i.favorited_page }}&favorited_timestamp={{ i.favorited_timestamp }}' class = 'btn btn-outline-danger'> Remove </button> </p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</form>
+    
+<form class = 'form-group' action = '/favorites'>
+    <div class = ' mt-5 container'>
+        <div class = 'mt-5 row'>
+            <div class = 'text-center'>
+                <button class = 'btn btn-outline-dark text-info btn-lg'> Done </button>
+            </div>
+        </div>
+    </div>
+</form>
+    
+{% endblock %}
