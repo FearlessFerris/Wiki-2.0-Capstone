@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}  {{ user.username }} Profile Page {% endblock %} 
+
+
+{% block content %} 
+
+    <div class = 'container'>
+        <div class = 'row'>
+            <div class = 'mt-5 col-12 text-center'>
+                <img class = 'border border-4 border-info rounded' src = '{{ user.picture }}' alt = 'Stan Smith' width = '250'> 
+                <p class = 'fs-3 text-info'> Username: <b> {{ user.username }} </b> </p>
+                <p class = 'fs-3 text-info'> Email: <b> {{ user.email }} </b> </p>
+                <p class = 'fs-3 text-info'> Date of Birth: <b> {{ user.dob }} </b> </p>
+                <p class = 'fs-3 text-info'> </p>
+                <form action = '/edit-profile'>
+                    <button class = 'btn btn-outline-dark text-info btn-lg' type = 'submit'> Edit Profile </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}

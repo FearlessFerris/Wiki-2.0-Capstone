@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title> {% block title %} {% endblock %} </title>
+</head>
+<body class = 'bg-light'>  
+
+    {% if 'user_id' not in session %}
+    <div class = 'navbar navbar-dark bg-dark'>
+        <button id = 'back-button' class = 'col-1-sm btn btn-outline-light text-info justify-content-start'> Back </button>
+        <a class = 'btn btn-outline-light text-info text-decoration-none justify-content-end' href = '/search-history'> Recent Searches </a>
+        <div class = 'container justify-content-center'>
+            <nav class = 'navbar navbar-dark bg-dark text-center'>
+                <a class = 'btn btn-outline-light text-info text-decoration-none' href = '/'> Home </a>
+                <a class = 'btn btn-outline-light text-info text-decoration-none' href = '/create-user'> Create User </a>
+                <a class = 'btn btn-outline-light text-info text-decoration-none' href = '/search-history'> Recent Searches </a>
+                <a class = 'btn btn-outline-light text-info text-decoration-none' href = '/login'> Login </a>
+                <form class = 'ms-5' action = ''>
+                    <div class = 'input-group'>
+                        <input  class = 'text-center border-2 border-info text-info rounded' type = 'text' placeholder = 'Menu Search' name = 'nav-search'>
+                        <button  class = 'text-info btn btn-outline-light'> Search </button>
+                    </div>
+                </form>
+            </nav>
+        </div>
+    </div>
+    {% endif %}
+
+
+    {% if 'user_id' in session %}
+    <div class = 'navbar navbar-dark bg-dark'>
+        <button id = 'back-button' class = 'col-1-sm btn btn-outline-light text-info justify-content-start'> Back </button>
+        <a class = 'btn btn-outline-light text-info text-decoration-none justify-content-end' href = '/search-history'> Recent Searches </a>
+        <div class = 'container justify-content-center'>
+            <nav class = 'navbar navbar-dark bg-dark text-center'>
+                <a class = 'btn btn-outline-light text-info text-decoration-none' href = '/'> Home </a>
+                <a class = 'btn btn-outline-light text-info text-decoration-none' href = '/user-profile'> Profile </a>
+                <a class = 'btn btn-outline-light text-info text-decoration-none' href = '/like-page'> Likes </a>
+                <a class = 'btn btn-outline-light text-info text-decoration-none' href = '/favorites'> Favorites </a>
+                <a class = 'btn btn-outline-light text-info text-decoration-none' href = '/logout'> Logout </a>
+                <form class = 'ms-5' action = ''>
+                    <div class = 'input-group'>
+                        <input class = 'text-center border-2 border-info text-info rounded' type = 'text' placeholder = 'Menu Search' name = 'nav-search'>
+                        <button class = 'text-info btn btn-outline-light'> Search </button>
+                    </div>
+                </form>
+            </nav>
+        </div>
+    </div>
+    {% endif %}
+
+    <h1 id = 'wiki-title' class = 'text-center'> Wiki 2.0 </h1>
+    
+
+    {% with messages = get_flashed_messages() %} 
+
+        {% if messages %} 
+
+        <ul class = 'flashes text-center text-info list-unstyled'>
+            {% for message in messages %}
+                <li> {{ message }} </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    {% endwith %}
+
+    
+
+    {% block content %}
+
+
+
+
+    {% endblock %}
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src = '/static/my.js'></script>
+    
+</body>
+</html>

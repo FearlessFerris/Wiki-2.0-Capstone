@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %} Liked Pages {% endblock %}
+
+{% block content %}
+
+<form class ='form-group' method = 'POST'>
+    <div class = 'container'>
+        <div class = 'row'>
+            <div class = 'mt-5 text-center'>
+                <button formaction = '/edit-likes' class = 'btn btn-outline-dark text-info text-center btn-lg' > Edit Likes </button>
+                <button formaction = '/clear-likes' class = 'btn btn-outline-dark text-info text-center btn-lg'> Clear Likes </button>
+            </div>
+        </div>
+    </div>
+</form>
+
+    <div class = 'container'>
+        <div class = 'row'>
+            <div class = 'p-5 col-12'>
+                {% for i in likes %}
+                    <p class = 'fs-5 text-center'> <b> <a class = 'text-decoration-none text-center text-info' href = '/get-page?title={{ i.liked_page }}'> {{ i.liked_page }} </a> </b> </p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %} Edit {{ user }} Favorites {% endblock %} 
+
+{% block content %} 
+
+<form class = 'text-center' action = '/like-page'>
+    <div class = 'mt-5 container'>
+        <div class = 'mt-5 row'>
+            <div class = 'text-center'>
+                <button class = 'btn btn-outline-dark text-info text-center btn-lg'> Done </button>
+            </div>
+        </div>
+    </div>
+</form>
+
+    <form class = 'text-center' action = '/remove-liked-item' method = 'POST'>
+        <div class = 'p-5 container'>
+            <div class = 'row'>
+                <div class = 'text-center'>
+                    {% for i in likes %}
+                        <p class = 'fs-5 text-center'> <b> <a class = 'text-decoration-none text-center text-info' href = '/get-page?title={{ i.liked_page }}'> {{ i.liked_page }} </a> </b> <button formaction = '/remove-liked-item?liked_page={{ i.liked_page }}&liked_timestamp={{ i.liked_timestamp }}' class = 'btn btn-outline-danger'> Remove </button>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </form>
+
+{% endblock %}

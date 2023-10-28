@@ -1,0 +1,41 @@
+{% extends 'base.html' %} 
+
+{% block title %} {{ user }} Edit Profile {% endblock %}
+
+{% block content %}
+
+    <form class = 'form-group' action = '/edit-profile' method = 'POST'>
+
+        <div class = 'mt-5 container'>
+            <div class = 'mt-5 row'>
+
+                {{ form.hidden_tag() }}
+
+                {% for field in form if field.widget.input_type != 'hidden' %}
+
+                <p class = 'fs-5 text-danger text-center'> 
+                    {% for error in field.errors %} 
+                        {{ error }}
+                    {% endfor %}
+                </p>
+    
+                <div class = 'ml-4 col-6'>
+                    <p class = 'fs-3 text-end'> {{ field.label( class = 'text-info') }} </p>
+                </div>
+                <div class = 'col-6'>
+                    <p class = 'fs-3 text-start'> {{ field( class = 'text-info border border-info') }} </p>
+                </div>
+
+                {% endfor %}
+                <div class = 'text-center'>
+                <button class = 'mt-5 btn btn-outline-dark text-info text-center btn-lg' type = 'submit'> Update </button>
+            </div>
+        </div>
+    </form>
+
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html' %} 
+
+{% block title %} {{ data.title }} {% endblock %}
+
+{% block content %} 
+
+
+
+<form id = 'add-to-favorites-form' method = 'POST'>  
+
+<div class = 'container'>
+  <div class = 'row'>
+    <div class = 'text-center'>
+        <h1 id = 'page-title' class = 'display-3 text-center'> {{ data.title }} </h1>
+        <button id = 'favorite-button' class = 'btn btn-outline-dark text-info text-center btn-lg' formaction = '/favorites?favorited_page={{ favorited_page }}' type = 'submit'> Add to Favorites </button> 
+        <button id = 'like-button' class = 'btn btn-outline-dark text-info textcenter btn-lg' formaction = '/like-page?liked_page={{ liked_page }}' type = 'submit'> Like </button>
+    </div>
+  </div>
+</div>
+
+        {{ form.hidden_tag() }}
+
+        {% for field in form if field.widget.input_type != 'hidden' %} 
+
+        <p class = 'fs-5 text-danger text-center'> 
+            {% for error in field.errors %} 
+                {{ error }}
+            {% endfor %}
+        </p>
+
+        {% endfor %}
+  </form>
+  
+  <p id = 'wiki-page' class = 'fs-4 fw-normal text-start'> {{ html }} </p>
+    
+  
+
+{% endblock %}
